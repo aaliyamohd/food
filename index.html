@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>AJ مطعم ليالي العرب - AJ Arabian Nights Restaurant</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><text y="20">🌙</text></svg>'), auto;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/arabian\ nights\ bg.jpg') center/cover fixed; /* Example using .jpg */
+color: #ffd700;
+            line-height: 1.6;
+        }
+
+        .header {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .restaurant-name {
+            font-size: 3rem;
+            color: #ffd700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+            margin-bottom: 1rem;
+        }
+
+        .nav-menu {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-list {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            color: #ffd700;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: #fff;
+        }
+
+        .description {
+            color: #fff;
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .menu-section {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #ffd700;
+            padding-top: 2rem;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 1rem;
+        }
+
+        .menu-item {
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .menu-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .item-details {
+            padding: 1rem;
+        }
+
+        .item-name {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .item-description {
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .item-price {
+            color: #ffd700;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .lang-en {
+            color: #ccc;
+            font-size: 0.9em;
+        }
+
+        .category-header {
+            text-align: center;
+            color: #ffd700;
+            font-size: 2.5rem;
+            margin: 3rem 0;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+        }
+
+        .section-divider {
+            border: none;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #ffd700, transparent);
+            margin: 2rem auto;
+            width: 80%;
+        }
+
+        .contact-section {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 3rem;
+            margin-top: 2rem;
+            text-align: center;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+        }
+
+        .contact-info {
+            color: #ffd700;
+            margin: 2rem 0;
+            font-size: 1.4rem;
+            text-shadow: 0 0 5px rgba(255, 215, 0, 0.3);
+        }
+
+        .contact-info i {
+            margin-right: 10px;
+            color: #ffd700;
+        }
+
+        .feedback-form {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: right;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #ffd700;
+            font-size: 1.1rem;
+        }
+
+        .feedback-form textarea {
+            width: 100%;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid #ffd700;
+            border-radius: 8px;
+            font-size: 1rem;
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .star-rating {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .star-rating input {
+            display: none;
+        }
+
+        .star-rating label {
+            color: #ffd700;
+            font-size: 2.5rem;
+            cursor: pointer;
+            transition: transform 0.2s, color 0.2s;
+        }
+
+        .star-rating label:hover {
+            transform: scale(1.2);
+            color: #ffed4a;
+        }
+
+        .star-rating label:hover ~ label,
+        .star-rating input:checked ~ label {
+            color: #ffed4a;
+        }
+
+        .media-upload {
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+        }
+
+        .upload-btn {
+            background: rgba(255, 215, 0, 0.2);
+            border: 2px dashed #ffd700;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 0.5rem 0;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .upload-btn:hover {
+            background: rgba(255, 215, 0, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .upload-btn i {
+            font-size: 2rem;
+            color: #ffd700;
+            margin-bottom: 0.5rem;
+        }
+
+        .submit-btn {
+            background: #ffd700;
+            color: black;
+            padding: 1rem 3rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 1rem;
+            font-weight: bold;
+        }
+
+        .submit-btn:hover {
+            background: #ffed4a;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        #audioControl {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 1000;
+            border: 2px solid #ffd700;
+            color: #ffd700;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #audioControl:hover {
+            background: rgba(0, 0, 0, 0.9);
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <audio id="bgMusic" preload="auto" loop>
+        <source src="12443.m4a".mp3" type="audio/mpeg">
+    </audio>
+
+    <button id="audioControl">
+        <i class="fas fa-volume-up"></i>
+    </button>
+
+    <div class="header">
+        <h1 class="restaurant-name" 𝘼.𝙅 مطعم ليالي العرب | 𝘼.𝙅 𝘼𝙧𝙖𝙗𝙞𝙖𝙣 𝙉𝙞𝙜𝙝𝙩𝙨 𝙍𝙚𝙨𝙩𝙖𝙪𝙧𝙖𝙣𝙩</h1>
+        <p class="description">
+            [تجربة طعام ساحرة في أجواء ألف ليلة وليلة>]
+            <span class="lang-en">
+
+          A magical dining experience in a Thousand and One Nights atmosphere
+                
+            </span>
+        </p>
+    </div>
+
+    
+
+    <div class="header">
+        <h1 class="restaurant-name">AJ مطعم ليالي العرب | AJ Arabian Nights Restaurant</h1>
+        <p class="description">
+            تجربة طعام ساحرة في أجواء ألف ليلة وليلة
+            <span class="lang-en">
+                A magical dining experience in a Thousand and One Nights atmosphere
+            </span>
+        </p>
+    </div>
+
+    <nav class="nav-menu">
+        <ul class="nav-list">
+            <li><a href="#starters" class="nav-link">المقبلات | Starters</a></li>
+            <li><a href="#mains" class="nav-link">الأطباق الرئيسية | Main Course</a></li>
+            <li><a href="#drinks" class="nav-link">المشروبات | Drinks</a></li>
+            <li><a href="#desserts" class="nav-link">الحلويات | Desserts</a></li>
+        </ul>
+    </nav>
+
+    <div id="starters" class="menu-section">
+        <h2 class="category-header">المقبلات | Starters</h2>
+        <div class="menu-grid">
+            <div class="menu-item">
+                <img src="hummus.jpeg" alt="Hummus">
+                <div class="item-details">
+                    <h3 class="item-name">حمص | Hummus</h3>
+                    <p class="item-description">
+                        حمص مع زيت الزيتون والصنوبر
+                        <span class="lang-en">Hummus with olive oil and pine nuts</span>
+                    </p>
+                    <p class="item-price">25 درهم | AED 25</p>
+                </div>
+            </div>
+           
+
+            
+
+            <div class="menu-item">
+                <img src="Tabbouleh.webp" alt="Tabbouleh">
+                <div class="item-details">
+                    <h3 class="item-name">تبولة | Tabbouleh</h3>
+                    <p class="item-description">
+                        سلطة البقدونس مع البرغل والطماطم
+                        <span class="lang-en">Parsley salad with bulgur and tomatoes</span>
+                    </p>
+                    <p class="item-price">28 درهم | AED 28</p>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="Fattoush.jpg" alt="Fattoush">
+                <div class="item-details">
+                    <h3 class="item-name">فتوش | Fattoush</h3>
+                    <p class="item-description">
+                        سلطة الخضار مع الخبز المحمص
+                        <span class="lang-en">Mixed vegetable salad with toasted bread</span>
+                    </p>
+                    <p class="item-price">30 درهم | AED 30</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <hr class="section-divider">
+
+    <div id="mains" class="menu-section">
+        <h2 class="category-header">الأطباق الرئيسية | Main Course</h2>
+        <div class="menu-grid">
+            <div class="menu-item">
+                <img src="Mansaf.jpg" alt="Mansaf">
+                <div class="item-details">
+                    <h3 class="item-name">منسف أردني | Jordanian Mansaf</h3>
+                    <p class="item-description">
+                        لحم ضأن مع الأرز واللبن
+                        <span class="lang-en">Lamb with rice and yogurt sauce</span>
+                    </p>
+                    <p class="item-price">85 درهم | AED 85</p>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="Mixed grill.jpg" alt="Mixed Grill">
+                <div class="item-details">
+                    <h3 class="item-name">مشاوي مشكلة | Mixed Grill</h3>
+                    <p class="item-description">
+                        تشكيلة من اللحوم المشوية
+                        <span class="lang-en">Assortment of grilled meats</span>
+                    </p>
+                    <p class="item-price">120 درهم | AED 120</p>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="Machbhous.jpg" alt="Machbous">
+                <div class="item-details">
+                    <h3 class="item-name">مجبوس | Machbous</h3>
+                    <p class="item-description">
+                        أرز بالبهارات مع الدجاج
+                        <span class="lang-en">Spiced rice with chicken</span>
+                    </p>
+                    <p class="item-price">75 درهم | AED 75</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <hr class="section-divider">
+
+    <div id="drinks" class="menu-section">
+        <h2 class="category-header">المشروبات | Drinks</h2>
+        <div class="menu-grid">
+            <div class="menu-item">
+                <img src="Arabic coffee.jpg" alt="Arabic Coffee">
+                <div class="item-details">
+                    <h3 class="item-name">قهوة عربية | Arabic Coffee</h3>
+                    <p class="item-description">
+                        قهوة عربية تقليدية مع الهيل
+                        <span class="lang-en">Traditional Arabic coffee with cardamom</span>
+                    </p>
+                    <p class="item-price">18 درهم | AED 18</p>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="Fresh juices.jpg" alt="Fresh Juices">
+                <div class="item-details">
+                    <h3 class="item-name">عصائر طازجة | Fresh Juices</h3>
+                    <p class="item-description">
+                        تشكيلة من العصائر الطازجة
+                        <span class="lang-en">Selection of fresh juices</span>
+                    </p>
+                    <p class="item-price">22 درهم | AED 22</p>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="Moroccan tea.jpg" alt="Moroccan Tea">
+                <div class="item-details">
+                    <h3 class="item-name">شاي مغربي | Moroccan Tea</h3>
+                    <p class="item-description">
+                        شاي بالنعناع الطازج
+                        <span class="lang-en">Tea with fresh mint</span>
+                    </p>
+                    <p class="item-price">20 درهم | AED 20</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr class="section-divider">
+
+    <div id="desserts" class="menu-section">
+        <h2 class="category-header">الحلويات | Desserts</h2>
+        <div class="menu-grid">
+            <div class="menu-item">
+                <img src="Kunafa.jpg" alt="Kunafa">
+                <div class="item-details">
+                    <h3 class="item-name">كنافة | Kunafa</h3>
+                    <p class="item-description">
+                        حلوى شرقية بالجبنة والقطر
+                        <span class="lang-en">Sweet cheese pastry with syrup</span>
+                    </p>
+                    <p class="item-price">35 درهم | AED 35</p>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="Umm Ali.jpg" alt="Umm Ali">
+                <div class="item-details">
+                    <h3 class="item-name">أم علي | Umm Ali</h3>
+                    <p class="item-description">
+                        حلوى مصرية بالكريمة والمكسرات
+                        <span class="lang-en">Egyptian bread pudding with cream and nuts</span>
+                    </p>
+                    <p class="item-price">32 درهم | AED 32</p>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="Bakhlava.jpg" alt="Baklava">
+                <div class="item-details">
+                    <h3 class="item-name">بقلاوة | Baklava</h3>
+                    <p class="item-description">
+                        حلوى بالمكسرات والعسل
+                        <span class="lang-en">Pastry with nuts and honey</span>
+                    </p>
+                    <p class="item-price">28 درهم | AED 28</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="contact-section">
+        <h2 class="category-header">اتصل بنا | Contact Us</h2>
+        <div class="contact-info">
+            <p><i class="fas fa-user"></i> Mohd Aaliya Jabeen</p>
+            <p><i class="fas fa-phone"></i> 73866****</p>
+        </div>
+
+        <form class="feedback-form">
+            <h3 class="section-title">تقييمك | Your Feedback</h3>
+            
+            <div class="star-rating">
+                <input type="radio" id="star5" name="rating" value="5">
+                <label for="star5">★</label>
+                <input type="radio" id="star4" name="rating" value="4">
+                <label for="star4">★</label>
+                <input type="radio" id="star3" name="rating" value="3">
+                <label for="star3">★</label>
+                <input type="radio" id="star2" name="rating" value="2">
+                <label for="star2">★</label>
+                <input type="radio" id="star1" name="rating" value="1">
+                <label for="star1">★</label>
+            </div>
+
+            <div class="form-group">
+                <label>رسالتك | Your Message</label>
+                <textarea placeholder="نرحب بملاحظاتك | We welcome your feedback" rows="5"></textarea>
+            </div>
+
+            <div class="media-upload">
+                <label>إضافة وسائط | Add Media</label>
+                <div class="upload-btn">
+                    <i class="fas fa-camera"></i>
+                    <p>انقر لإضافة صور | Click to add photos</p>
+                    <input type="file" accept="image/*" multiple style="display: none">
+                </div>
+                <div class="upload-btn">
+                    <i class="fas fa-video"></i>
+                    <p>انقر لإضافة فيديو | Click to add video</p>
+                    <input type="file" accept="video/*" style="display: none">
+                </div>
+            </div>
+
+            <button type="submit" class="submit-btn">
+                <i class="fas fa-paper-plane"></i> إرسال | Submit
+            </button>
+        </form>
+    </div>
+
+    <script>
+        // Enhanced audio control
+        window.addEventListener('load', function() {
+            const audio = document.getElementById('bgMusic');
+            const audioControl = document.getElementById('audioControl');
+            const audioIcon = audioControl.querySelector('i');
+
+            // Try to play audio immediately
+            audio.play().catch(function(error) {
+                console.log("Auto-play failed:", error);
+            });
+
+            // Toggle audio on/off
+            audioControl.addEventListener('click', function() {
+                if (audio.paused) {
+                    audio.play();
+                    audioIcon.className = 'fas fa-volume-up';
+                } else {
+                    audio.pause();
+                    audioIcon.className = 'fas fa-volume-mute';
+                }
+            });
+
+            // Handle file uploads
+            document.querySelectorAll('.upload-btn input[type="file"]').forEach(input => {
+                input.addEventListener('change', function() {
+                    if (this.files.length > 0) {
+                        this.parentElement.style.borderColor = '#4CAF50';
+                        this.parentElement.querySelector('p').textContent = 
+                            this.files.length + ' ' + (this.accept.includes('image') ? 'صور' : 'فيديو') + ' تم اختيارها';
+                    }
+                });
+            });
+
+            // Make upload buttons clickable
+            document.querySelectorAll('.upload-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    this.querySelector('input[type="file"]').click();
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
